@@ -1,3 +1,5 @@
+require "date"
+
 class Market
   attr_reader :name,
               :vendors
@@ -48,5 +50,13 @@ class Market
       items << item.name
     end
     items.sort
+  end
+
+  def date
+    Date.today.strftime("%d/%m/%Y")
+  end
+
+  def sell(item, quantity)
+    
   end
 end
