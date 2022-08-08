@@ -12,6 +12,6 @@ describe Item do
 
   it "has a name and a price" do
     expect(@item1.name).to eq("Peach")
-    expect(@item2.price).to eq("$0.75")
+    expect(@item1.price).to eq("$0.75")
   end
 end
