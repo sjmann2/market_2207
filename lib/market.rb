@@ -20,4 +20,33 @@ class Market
       vendor.inventory.include?(item)
     end
   end
+
+  def total_inventory
+    total_inventory = Hash.new { |h, k| h[k] = { quantity: 0, vendors: [] } }
+    @vendors.map do |vendor|
+      vendor.inventory.map do |item, quantity|
+        total_inventory[item][:quantity] += quantity
+        total_inventory[item][:vendors] << vendor
+      end
+    end
+    total_inventory
+  end
+
+  def overstocked_items
+    overstocked_items = []
+    total_inventory.map do |item, quantity_vendors|
+      if quantity_vendors[:quantity] > 50 && quantity_vendors[:vendors].length > 1
+        overstocked_items << item
+      end
+    end
+    overstocked_items
+  end
+
+  def sorted_item_list
+    items = []
+    total_inventory.each do |item, quantity_vendors|
+      items << item.name
+    end
+    items.sort
+  end
 end
