@@ -57,6 +57,16 @@ class Market
   end
 
   def sell(item, quantity)
-    
+    if total_inventory[item][:quantity] > quantity
+      @vendors.each do |vendor|
+        if vendor.inventory[item].zero?
+          next
+        end
+        vendor.inventory[item] -= quantity
+      end
+    return true
+    else
+      return false
+    end
   end
 end
