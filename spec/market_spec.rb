@@ -1,6 +1,7 @@
 require "./lib/item"
 require "./lib/vendor"
 require "./lib/market"
+require "date"
 
 describe Market do
   describe "Iteration 2" do
@@ -130,7 +131,7 @@ describe Market do
     end
 
     it "can give the date the market was created" do
-      allow(@market).to receive(:date).and_return(Date.parse("20200224").stftime("%d/%m/%Y"))
+      allow(@market).to receive(:date).and_return(Date.parse("20200224").strftime("%d/%m/%Y"))
       expect(@market.date).to eq("24/02/2020")
     end
 
